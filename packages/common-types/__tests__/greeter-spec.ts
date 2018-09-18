@@ -1,6 +1,5 @@
-import { Greeter } from '../src/greeter';
+import { testEmployeeList } from '../src/test-employee-list';
 
 test('Should greet with message', () => {
-  const greeter = new Greeter('friend');
-  expect(greeter.greet()).toBe('Bonjour, friend!');
+  expect(testEmployeeList.employees.length).toEqual(99);
 });
