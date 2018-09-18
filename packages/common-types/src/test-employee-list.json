@@ -1,4 +1,4 @@
-export const testEmployeeList = {
+{
   "employees": [{
     "employeeSourceId": "31",
     "employeeClass": "Annual",
@@ -5985,4 +5985,4 @@ export const testEmployeeList = {
     },
     "customFieldValues": null
   }]
-};
+}
