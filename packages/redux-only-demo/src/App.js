@@ -1,22 +1,12 @@
 import React, { Component } from 'react';
-import './App.css';
-import Employee from './Employee';
-
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
-// TODO Move
-function employeeListRequested() {
-  return {
-    type: 'EMPLOYEE_LIST_REQUESTED'
-  };
-}
-function employeeListReceived(employeeList) {
-  return {
-    type: 'EMPLOYEE_LIST_RECEIVED',
-    employeeList
-  };
-}
+import Employee from './Employee';
+import Timer from './Timer';
+
+import { employeeListReceived, employeeListRequested } from './state-management/actions';
+
+import './App.css';
 
 class App extends Component {
 
@@ -35,23 +25,22 @@ class App extends Component {
       <div className="App">
         <h1>Redux-only-demo</h1>
 
+        { this.props.employeeList.length > 0 && <Timer></Timer> }
         { this.props.employeeList.map(employee => <Employee key={employee.employeeSourceId} value={employee} />) }
+        { this.props.employeeList.length > 0 && <Timer></Timer> }
       </div>
     );
   }
 }
 
-
 const mapStateToProps = state => ({
   employeeList: state.employeeReducer.employeeList
 });
-const mapDispatchToProps = dispatch => bindActionCreators(
-  {
-    employeeListRequested,
-    employeeListReceived,
-  },
-  dispatch,
-);
+
+const mapDispatchToProps = {
+  employeeListRequested,
+  employeeListReceived,
+};
 
 export default connect(
   mapStateToProps,
