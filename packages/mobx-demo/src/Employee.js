@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import './Employee.css';
 
+import { observer } from 'mobx-react';
+
+@observer
 class Employee extends Component {
-  renderField(field, index) { return <span key={index}>{field.k} {this.props.value[field.v]}</span>; }
+  renderField(field, index) { return <span key={index}>{field.k} {this.value[field.v]}</span>; }
 
   currentPay(employee) {
     return employee.currentPay.toFixed(2);
@@ -12,17 +15,23 @@ class Employee extends Component {
     return (employee.currentPay * employee.prorateRatio).toFixed(2);
   }
 
+  get value() {
+    return this.props.store.employeeList.find(
+      employee => employee.employeeSourceId === this.props.id
+    );
+  }
+
   render() {
     return (
       <div className="employee-card">
         <div>
-          <h4>Last Pay Change {this.props.value.payEffectiveDate}</h4>
-          <h2>{this.props.value.firstName} {this.props.value.lastName}</h2>
+          <h4>Last Pay Change {this.value.payEffectiveDate}</h4>
+          <h2>{this.value.firstName} {this.value.lastName}</h2>
         </div>
         <div>
           <div>
-            <span>Current range {this.currentPay(this.props.value)}</span>
-            <span>Prorated {this.proratedPay(this.props.value)}</span>
+            <span>Current range {this.currentPay(this.value)}</span>
+            <span>Prorated {this.proratedPay(this.value)}</span>
           </div>
           <div>
           {

@@ -24,7 +24,11 @@ class App extends Component {
         <h1>Mobx-demo</h1>
 
         { this.props.store.employeeList.length > 0 && <Timer></Timer> }
-        { this.props.store.employeeList.map(employee => <Employee key={employee.employeeSourceId} value={employee} />) }
+        {
+          this.props.store.employeeList.map(employee =>
+            <Employee store={this.props.store} key={employee.employeeSourceId} id={employee.employeeSourceId} />
+          )
+        }
         { this.props.store.employeeList.length > 0 && <Timer></Timer> }
       </div>
     );

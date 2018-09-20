@@ -26,7 +26,11 @@ class App extends Component {
         <h1>Redux-only-demo</h1>
 
         { this.props.employeeList.length > 0 && <Timer></Timer> }
-        { this.props.employeeList.map(employee => <Employee key={employee.employeeSourceId} value={employee} />) }
+        {
+          this.props.employeeList.map(
+            employee => <Employee key={employee.employeeSourceId} id={employee.employeeSourceId} {...this.props} />
+          )
+        }
         { this.props.employeeList.length > 0 && <Timer></Timer> }
       </div>
     );
