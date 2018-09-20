@@ -16,7 +16,7 @@ const employeeReducer = (state = defaultState, action) => {
 
     case 'EMPLOYEE_LIST_RECEIVED':
       return Object.assign({}, state, {
-        status: defaultStatus,
+        status: 'loaded!',
         employeeList: action.employeeList,
       });
 

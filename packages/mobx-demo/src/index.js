@@ -4,5 +4,17 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import DevTools from "mobx-react-devtools";
+
+import EmployeeListModel from './state-management/employee-list-model';
+
+const store = new EmployeeListModel();
+
+ReactDOM.render(
+  <div>
+    <DevTools />
+    <App store={store} />
+  </div>,
+  document.getElementById('root')
+);
 registerServiceWorker();
