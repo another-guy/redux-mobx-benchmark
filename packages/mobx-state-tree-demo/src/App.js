@@ -1,21 +1,43 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+import { observer } from 'mobx-react';
+
+import Employee from './Employee';
+import Timer from './Timer';
+
 class App extends Component {
+  componentDidMount() {
+    const { appModel } = this.props;
+
+    appModel.employeeListRequested();
+
+    return fetch(`http://localhost:3001/employees`)
+      .then(response => response.json())
+      .then(json => {
+        appModel.employeeListReceived(json);
+      });
+  }
+
   render() {
+    const { appModel } = this.props;
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h1>Mobx-demo</h1>
+
+        STATUS: { appModel.status }
+
+        { appModel.employeeList.length > 0 && <Timer></Timer> }
+        {
+          appModel.employeeList.map(employee =>
+            <Employee key={employee.employeeSourceId} value={employee} />
+          )
+        }
+        { appModel.employeeList.length > 0 && <Timer></Timer> }
       </div>
     );
   }
 }
 
-export default App;
+export default observer(App);
