@@ -24,7 +24,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>Mobx-demo</h1>
+        <h1>Mobx-state-tree-demo</h1>
 
         STATUS: { appModel.status }
 
