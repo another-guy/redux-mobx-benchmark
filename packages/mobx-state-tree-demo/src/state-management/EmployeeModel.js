@@ -43,7 +43,6 @@ const EmployeeModel = types
       getManager: () => `Manager: ${toSimpleName(getParent(employeeModel, 1).find(p => p.employeeSourceId === employeeModel.managerSourceId) || {})}`,
       getPayInfo: () => `Basic pay info: ${JSON.stringify([employeeModel.baseSalary, employeeModel.hourlyRate, employeeModel.currentPayWithFte])}`,
       getOther: () => `${employeeModel.jobCodeKey} - ${employeeModel.promotionId} - ${employeeModel.isHourly} - ${employeeModel.hasPromotionRequest}`,
-
       getFullName1Rev: () => reverse(employeeModel.getFullName1()),
       getFullName2Rev: () => reverse(employeeModel.getFullName2()),
       getHireDateHumanRev: () => reverse(employeeModel.getHireDateHuman()),
