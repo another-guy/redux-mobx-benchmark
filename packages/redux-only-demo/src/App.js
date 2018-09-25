@@ -28,7 +28,7 @@ class App extends Component {
         { this.props.employeeList.length > 0 && <Timer></Timer> }
         {
           this.props.employeeList.map(
-            employee => <Employee key={employee.employeeSourceId} id={employee.employeeSourceId} {...this.props} />
+            employee => <Employee key={employee.employeeSourceId} employee={employee} {...this.props} />
           )
         }
         { this.props.employeeList.length > 0 && <Timer></Timer> }
