@@ -1,0 +1,16 @@
+
+span {
+    margin: 0 5px 0 5px;
+}
+
+.employee-card {
+    margin: 5px;
+    border: 2px solid black;
+    background-color: darkslategray ;
+}
+.computed {
+    background-color: slategray;
+}
+.rendered {
+    background-color: darkgray;
+}
