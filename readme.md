@@ -19,7 +19,19 @@ lerna run build
 ### JSON as a fake service
 
 ```sh
-json-server src/test-employee-list.json
+cd packages/common-types
+json-server -p 3001 src/test-employee-list.json
 ```
 
 `HTTP GET http://localhost:3001/employees`
+
+### Launch the package of interest
+
+```sh
+cd packages/redux-only-demo             # or
+cd packages/mobx-demo                   # or
+cd packages/mobx-state-tree-demo        # or
+cd packages/mobx-state-tree-legacy-demo
+
+npm run start
+```
